@@ -76,9 +76,8 @@ export default function SplashScreen({ navigation }: RootScreenProps<'Splash'>) 
   const markScaleY = useRef(new Animated.Value(1)).current;
   const markShift = useRef(new Animated.Value(0)).current;
 
-  // Height is not native-driver capable, so the thruster runs on its own
-  // value and its own (JS-driven) timing. It is one small view for 400ms.
-  const thrusterHeight = useRef(new Animated.Value(0)).current;
+  // Thruster animation runs on native driver (scale & opacity)
+  const thrusterScale = useRef(new Animated.Value(0)).current;
   const thrusterOpacity = useRef(new Animated.Value(0)).current;
 
   const shock = useRef(new Animated.Value(0)).current;
@@ -244,13 +243,13 @@ export default function SplashScreen({ navigation }: RootScreenProps<'Splash'>) 
             easing: Easing.out(Easing.ease),
             useNativeDriver: true,
           }),
+          Animated.timing(thrusterScale, {
+            toValue: 1,
+            duration: 400,
+            easing: Easing.out(Easing.ease),
+            useNativeDriver: true,
+          }),
         ]).start();
-        Animated.timing(thrusterHeight, {
-          toValue: 1,
-          duration: 400,
-          easing: Easing.out(Easing.ease),
-          useNativeDriver: false,
-        }).start();
       }, 330);
 
       // t+760: blast off, speed lines, shock ring.
@@ -311,7 +310,7 @@ export default function SplashScreen({ navigation }: RootScreenProps<'Splash'>) 
       markScaleY,
       markShift,
       thrusterOpacity,
-      thrusterHeight,
+      thrusterScale,
       shock,
       speedLines,
       speedSeeds,
@@ -465,12 +464,20 @@ export default function SplashScreen({ navigation }: RootScreenProps<'Splash'>) 
                 styles.thruster,
                 {
                   width: field * 0.17,
+                  height: plate * 2,
                   top: plate * 0.86,
                   opacity: thrusterOpacity,
-                  height: thrusterHeight.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0, plate * 2],
-                  }),
+                  transform: [
+                    {
+                      scaleY: thrusterScale,
+                    },
+                    {
+                      translateY: thrusterScale.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [-plate, 0],
+                      }),
+                    },
+                  ],
                 },
               ]}
             >
