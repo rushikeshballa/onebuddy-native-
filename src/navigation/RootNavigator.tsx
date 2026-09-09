@@ -9,8 +9,7 @@ import { useAppTheme } from '@/theme/ThemeContext';
 import { useOtpAuth } from '@/auth/OtpAuthContext';
 
 import SplashScreen from '@/screens/SplashScreen';
-import PhoneScreen from '@/screens/auth/PhoneScreen';
-import OtpScreen from '@/screens/auth/OtpScreen';
+import AuthScreen from '@/screens/auth/AuthScreen';
 import HomeScreen from '@/screens/HomeScreen';
 import AppSettingsRoute from '@/screens/AppSettingsRoute';
 import {
@@ -121,8 +120,7 @@ export default function RootNavigator() {
         ) : (
           <>
             <Stack.Screen name="Splash" component={SplashScreen} />
-            <Stack.Screen name="Phone" component={PhoneScreen} />
-            <Stack.Screen name="Otp" component={OtpScreen} />
+            <Stack.Screen name="Auth" component={AuthScreen} />
           </>
         )}
       </Stack.Navigator>

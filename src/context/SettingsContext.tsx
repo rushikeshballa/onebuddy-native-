@@ -29,7 +29,7 @@ const STORAGE_KEYS = {
 } as const;
 
 const DEFAULT_STATE: SettingsState = {
-  theme: "system",
+  theme: "light",
   language: "en",
   locationAccess: false,
   shareUsageData: false,

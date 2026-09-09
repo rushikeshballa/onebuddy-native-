@@ -21,7 +21,7 @@ function resolveScheme(
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const { state } = useSettings();
-  const systemScheme = (useColorScheme() ?? "dark") as ResolvedScheme;
+  const systemScheme = (useColorScheme() ?? "light") as ResolvedScheme;
 
   const value = useMemo<ThemeContextValue>(() => {
     const scheme = resolveScheme(state.theme, systemScheme);

@@ -10,9 +10,7 @@ import type { ServiceId } from '@/design/tokens';
  */
 export type RootStackParamList = {
   Splash: undefined;
-  Phone: undefined;
-  /** `identifier` is the email or phone the code was sent to. */
-  Otp: { identifier: string };
+  Auth: undefined;
   Tabs: undefined;
 
   /** Category sub-apps, opened from the dashboard cards. */

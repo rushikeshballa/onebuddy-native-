@@ -187,7 +187,7 @@ export default function SplashScreen({ navigation }: RootScreenProps<'Splash'>) 
       if (launched.current) return;
       launched.current = true;
 
-      const goto = () => navigation.replace('Phone');
+      const goto = () => navigation.replace('Auth');
       // Same failsafe the document had: never strand the person on the splash
       // if something in the sequence misbehaves.
       const failsafe = setTimeout(goto, 2300);
@@ -354,7 +354,11 @@ export default function SplashScreen({ navigation }: RootScreenProps<'Splash'>) 
   });
 
   return (
-    <View style={[styles.root, { backgroundColor: tokens.bgDeep }]}>
+    <View style={styles.root}>
+      <LinearGradient
+        colors={[tokens.bgDeep, brand.lavenderDeep]}
+        style={StyleSheet.absoluteFill}
+      />
       <View style={styles.stack}>
         <View style={{ width: field, height: field, alignItems: 'center', justifyContent: 'center' }}>
           {/* .ob-guide — dashed ring, counter-spinning */}

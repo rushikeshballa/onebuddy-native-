@@ -6,7 +6,7 @@
  * call, no generated code and no verification, so there was nothing to port.
  *
  * This module is the seam where a real one goes. Everything above it —
- * `OtpAuthContext`, `PhoneScreen`, `OtpScreen` — only ever calls `sendOtp`
+ * `OtpAuthContext`, `AuthScreen` — only ever calls `sendOtp`
  * and `verifyOtp`, so swapping the provider is a change to this file alone.
  *
  * IMPORTANT: do not call an SMS gateway directly from here. The API key would
